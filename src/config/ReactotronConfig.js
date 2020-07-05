@@ -6,7 +6,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 // No iOS = configure()
 if (__DEV__) {
   const tron = Reactotron.setAsyncStorageHandler(AsyncStorage)
-    .configure({ host: '192.168.0.7' })
+    .configure({ host: '192.168.0.6' })
     .useReactNative()
     .use(reactotronRedux())
     .use(reactotronSaga())
