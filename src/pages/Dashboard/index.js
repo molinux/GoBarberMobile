@@ -15,6 +15,7 @@ function Dashboard({ isFocused }) {
     const response = await api.get('appointments');
 
     setAppointments(response.data);
+    console.log(response.data);
   }
 
   useEffect(() => {

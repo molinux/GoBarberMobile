@@ -1,8 +1,9 @@
 import React, { useMemo, useState } from 'react';
 import {
-  format,
+  forrmat,
   subDays,
   addDays,
+  addHours,
   setHours,
   setMinutes,
   setSeconds,
@@ -19,12 +20,17 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Container, Left, Avatar, Info, Name, Time } from './styles';
 
 export default function Appointment({ onCancel, data }) {
-  // const [date, setDate] = useState(new Date());
-
   // const date
+  const timezone = -3;
+  // const timeZone = 'America/Sao_Paulo';
+  // const zonedDate = utcToZonedTime(data.date, timeZone);
+  // console.log(zonedDate);
+  // const timeZoned = addHours(data.date, timezone);
 
   const dateParsed = useMemo(() => {
-    return formatRelative(parseISO(data.date), new Date(), {
+    // return formatRelative(parseISO(data.date), new Date(), {
+    return formatRelative(addHours(parseISO(data.date), timezone), new Date(), {
+      // return formatRelative(parseISO(addHours(data.date, timezone), new Date(), {
       locale: pt,
       addSuffix: true,
     });

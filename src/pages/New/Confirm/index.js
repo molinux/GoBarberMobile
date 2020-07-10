@@ -22,7 +22,7 @@ import api from '~/services/api';
 
 import Background from '~/components/Background';
 
-import { Container, Avatar, Name, Time, SubmitButton } from './styles.js';
+import { Container, Avatar, Name, Time, SubmitButton } from './styles';
 
 // Teste
 const range = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
@@ -31,17 +31,11 @@ const timezone = -3;
 export default function Confirm({ navigation }) {
   const provider = navigation.getParam('provider');
   const time = navigation.getParam('time');
-  const timeZoned = addHours(time, timezone);
+  // const timeZoned = addHours(time, timezone);
 
-  console.log(`Horario: ${time}`);
-  console.log(`Time: ${time}`);
-  console.log(`TimeZoned: ${timeZoned}`);
-  // const hoje = new Date();
-  // console.log(`Hoje: ${hoje}`);
-
-  // const newTime = time;
-  // const timeZone = addHours(parseISO(newTime), -3);
-  // console.log(`timezone: ${timeZone}`);
+  // console.log(`Horario: ${time}`);
+  // console.log(`Time: ${time}`);
+  // console.log(`TimeZoned: ${timeZoned}`);
 
   const dateFormatted = useMemo(
     () =>
