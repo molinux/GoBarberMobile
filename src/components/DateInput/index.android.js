@@ -1,6 +1,17 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { DatePickerAndroid } from 'react-native';
-import { format } from 'date-fns';
+import {
+  format,
+  subDays,
+  addDays,
+  setHours,
+  setMinutes,
+  setSeconds,
+  isBefore,
+  isEqual,
+  parseISO,
+} from 'date-fns';
+import { utcToZonedTime } from 'date-fns-tz';
 import pt from 'date-fns/locale/pt';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -8,6 +19,8 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Container, DateButton, DateText } from './styles';
 
 export default function DateInput({ date, onChange }) {
+  // const [date, setDate] = useState(new Date());
+
   const dateFormatted = useMemo(
     () => format(date, "dd 'de' MMMM 'de' yyyy", { locale: pt }),
     [date]

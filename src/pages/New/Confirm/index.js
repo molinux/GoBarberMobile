@@ -1,5 +1,18 @@
-import React, { useMemo } from 'react';
-import { formatRelative, parseISO } from 'date-fns';
+import React, { useMemo, useState } from 'react';
+import {
+  format,
+  subDays,
+  addHours,
+  addDays,
+  setHours,
+  setMinutes,
+  setSeconds,
+  isBefore,
+  isEqual,
+  parseISO,
+  formatRelative,
+} from 'date-fns';
+import { utcToZonedTime } from 'date-fns-tz';
 import pt from 'date-fns/locale/pt';
 import { TouchableOpacity } from 'react-native';
 
@@ -11,14 +24,36 @@ import Background from '~/components/Background';
 
 import { Container, Avatar, Name, Time, SubmitButton } from './styles.js';
 
+// Teste
+const range = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+const timezone = -3;
+
 export default function Confirm({ navigation }) {
   const provider = navigation.getParam('provider');
   const time = navigation.getParam('time');
+  const timeZoned = addHours(time, timezone);
+
+  console.log(`Horario: ${time}`);
+  console.log(`Time: ${time}`);
+  console.log(`TimeZoned: ${timeZoned}`);
+  // const hoje = new Date();
+  // console.log(`Hoje: ${hoje}`);
+
+  // const newTime = time;
+  // const timeZone = addHours(parseISO(newTime), -3);
+  // console.log(`timezone: ${timeZone}`);
 
   const dateFormatted = useMemo(
-    () => formatRelative(parseISO(time), new Date(), { locale: pt }),
+    () =>
+      // Estava adicionando +3hs
+      // formatRelative(parseISO(time, time), new Date(), {
+      formatRelative(addHours(parseISO(time, time), timezone), new Date(), {
+        locale: pt,
+      }),
     [time]
   );
+
+  // console.log(`dateFormatted ${dateFormatted}`);
 
   async function handleAddAppointment() {
     await api.post('appointments', {
