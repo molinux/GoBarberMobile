@@ -20,6 +20,10 @@ export default function SelectDateTime({ navigation }) {
       const response = await api.get(`providers/${provider.id}/available`, {
         params: {
           date: date.getTime(),
+          // date: date.getTime() + date.getTimezoneOffset() * 60 * 1000,
+          // date: date.setTime(
+          //   date.getTime() + date.getTimezoneOffset() * 60 * 1000
+          // ),
         },
       });
 
@@ -28,6 +32,11 @@ export default function SelectDateTime({ navigation }) {
 
     loadAvailable();
   }, [date, provider.id]);
+
+  // console.log(`Data: ${date}`);
+
+  // const timezone = date.getTime() + date.getTimezoneOffset() * 60 * 1000;
+  // console.log(`Timezone: ${timezone}`);
 
   function handleSelectHour(time) {
     navigation.navigate('Confirm', {
